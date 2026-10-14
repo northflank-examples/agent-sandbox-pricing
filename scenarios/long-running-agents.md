@@ -26,7 +26,7 @@ Compute plus disk while running, at list price. Excludes free credits, plan fees
 | [E2B](../providers/e2b.md) | 2 vCPU / 4 GiB | $0.1656 | $1,208.88 | Pro ($150/mo) ⚠ max session 24 h; restart or Enterprise ($3,000/mo minimum; multi-day sessions, BYOC) |
 | [Daytona](../providers/daytona.md) | 2 vCPU / 4 GiB | $0.1672 | $1,220.71 | Tier 2 ($25 top-up) (no plan fee) ⚠ above the default max per sandbox (4 vCPU / 8 GiB / 10 GB disk); ask to raise it |
 | [Modal](../providers/modal.md) | 2 vCPU / 4 GiB | $0.2380 | $1,737.11 | Starter (no plan fee) ⚠ max session 24 h; restart or Enterprise (custom) |
-| [Runloop](../providers/runloop.md) | 2 vCPU / 4 GiB | $0.3236 | $2,362.62 | Basic (no plan fee) ⚠ limits not published |
+| [Runloop](../providers/runloop.md) (shutting down) | 2 vCPU / 4 GiB | $0.3236 | $2,362.62 | Basic (no plan fee) ⚠ limits not published |
 <!-- END GENERATED: scenario:long-running-agents -->
 
 ⚠ = a plan limit isn't published, or the workload exceeds the plan's session limit.

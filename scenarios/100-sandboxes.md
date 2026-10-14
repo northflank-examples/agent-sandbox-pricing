@@ -26,7 +26,7 @@ Compute plus disk while running, at list price. Excludes free credits, plan fees
 | [E2B](../providers/e2b.md) | 2 vCPU / 4 GiB | $0.1656 | $16.56 | Pro ($150/mo) |
 | [Daytona](../providers/daytona.md) | 2 vCPU / 4 GiB | $0.1661 | $16.61 | Tier 3 ($500 top-up) (no plan fee) |
 | [Modal](../providers/modal.md) | 2 vCPU / 4 GiB | $0.2380 | $23.80 | Starter (no plan fee) |
-| [Runloop](../providers/runloop.md) | 2 vCPU / 4 GiB | $0.3202 | $32.02 | Basic (no plan fee) ⚠ limits not published |
+| [Runloop](../providers/runloop.md) (shutting down) | 2 vCPU / 4 GiB | $0.3202 | $32.02 | Basic (no plan fee) ⚠ limits not published |
 <!-- END GENERATED: scenario:100-sandboxes -->
 
 ⚠ = a plan limit isn't published, or the workload exceeds the plan's session limit.

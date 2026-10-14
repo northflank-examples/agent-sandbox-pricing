@@ -81,7 +81,8 @@ MODEL_LABEL = {
 
 
 def link(p: dict, rel: str) -> str:
-    return f"[{p['name']}]({rel}providers/{p['id']}.md)"
+    notice = f" ({p['status_notice']['label']})" if p.get("status_notice") else ""
+    return f"[{p['name']}]({rel}providers/{p['id']}.md){notice}"
 
 
 def block_rates(rel: str) -> str:
@@ -215,7 +216,11 @@ def block_provider(pid: str) -> str:
         ]) + "\n\n" + "\n".join(f"- {n}" for n in b["notes"]) + f"\n\nSource: {b['source']}"
     sources = "\n".join(f"- <{u}>" for u in p["sources"])
     caveats = "\n".join(f"- {q}" for q in p.get("open_questions", [])) or "- None"
-    return f"""Last verified: **{p['last_verified']}** · Official pricing: <{p['pricing_url']}>
+    notice = ""
+    if p.get("status_notice"):
+        n = p["status_notice"]
+        notice = f"> **⚠ {n['label'].capitalize()}:** \"{n['text']}\" ([source]({n['source']}))\n\n"
+    return f"""{notice}Last verified: **{p['last_verified']}** · Official pricing: <{p['pricing_url']}>
 
 ## At a glance
 

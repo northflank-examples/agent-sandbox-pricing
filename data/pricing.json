@@ -456,6 +456,11 @@
     {
       "id": "runloop",
       "name": "Runloop",
+      "status_notice": {
+        "label": "shutting down",
+        "text": "Runloop is winding down its services. Support for existing customers continues through November 13, 2026 at 11:59 PM PT.",
+        "source": "https://docs.runloop.ai/docs/devboxes/configuration/sizes"
+      },
       "website": "https://runloop.ai",
       "pricing_url": "https://runloop.ai/pricing",
       "last_verified": "2026-10-14",

@@ -22,7 +22,7 @@
 - [Modal](providers/modal.md)
 - [Vercel Sandbox](providers/vercel.md)
 - [Cloudflare Sandbox](providers/cloudflare.md)
-- [Runloop](providers/runloop.md)
+- [Runloop](providers/runloop.md) (winding down; supports existing customers until November 13, 2026)
 - [Sprites (Fly.io)](providers/sprites.md)
 
 ## Data

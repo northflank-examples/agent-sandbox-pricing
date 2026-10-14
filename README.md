@@ -4,6 +4,7 @@ An open, source-linked comparison of what it costs to run **AI agent sandboxes**
 
 - **Prices last verified:** 2026-10-14 (each provider page shows its own verification date)
 - **Providers:** [Northflank](providers/northflank.md) · [E2B](providers/e2b.md) · [Daytona](providers/daytona.md) · [Modal](providers/modal.md) · [Vercel Sandbox](providers/vercel.md) · [Cloudflare Sandbox](providers/cloudflare.md) · [Runloop](providers/runloop.md) · [Sprites (Fly.io)](providers/sprites.md)
+- **Note:** Runloop is winding down; it supports existing customers until November 13, 2026 ([source](https://docs.runloop.ai/docs/devboxes/configuration/sizes)). It stays in the tables until then.
 - **Data:** every number comes from [`data/pricing.json`](data/pricing.json), and every table below is generated from it. Price your own workload in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run) or the [CLI](#estimate-your-own-workload).
 
 > **Disclosure:** this repository is maintained by [Northflank](https://northflank.com/product/sandboxes), one of the providers compared. To keep it fair, every provider uses the same [methodology](methodology.md), every rate links to the vendor's own pricing page, and corrections from any vendor or user are welcome via [pull request](CONTRIBUTING.md).
@@ -33,7 +34,7 @@ List prices for one sandbox with **2 vCPU and 4 GiB RAM**, sorted by the price f
 | [E2B](providers/e2b.md) | $0.0504 | $0.0162 | 2 vCPU / 4 GiB | $0.1656 | $0.1656 | allocated | per second | [pricing](https://e2b.dev/pricing) |
 | [Daytona](providers/daytona.md) | $0.0504 | $0.0162 | 2 vCPU / 4 GiB | $0.1656 | $0.1656 | allocated | per second | [pricing](https://www.daytona.io/pricing) |
 | [Modal](providers/modal.md) | $0.07096 | $0.02401 | 2 vCPU / 4 GiB | $0.2380 | $0.2380 | max(request, usage) | per second | [pricing](https://modal.com/pricing) |
-| [Runloop](providers/runloop.md) | $0.108 | $0.0252 | 2 vCPU / 4 GiB | $0.3168 | $0.3168 | allocated | per second | [pricing](https://runloop.ai/pricing) |
+| [Runloop](providers/runloop.md) (shutting down) | $0.108 | $0.0252 | 2 vCPU / 4 GiB | $0.3168 | $0.3168 | allocated | per second | [pricing](https://runloop.ai/pricing) |
 <!-- END GENERATED: rates -->
 
 *Billing model:* **allocated** = you pay for the vCPU and RAM reserved for the sandbox, every second it runs, busy or not · **max(request, usage)** = the same, except you pay for actual usage instead if it exceeds the reservation (Modal) · **active CPU** = RAM billed while running, CPU billed only while it is executing · **usage** = only the CPU time and RAM actually consumed. **Bold** billed sizes mean the provider bills more than you asked for, because of fixed plans or a minimum RAM-per-vCPU ratio. See [billing models explained](comparisons/billing-models.md).
@@ -54,7 +55,7 @@ Hourly rates don't answer "what will my bill be?", so here are four standard age
 | [E2B](providers/e2b.md) | $6.90 | $16.56 | $331.20 | $1,208.88 |
 | [Daytona](providers/daytona.md) | $6.90 | $16.61 | $332.28 | $1,220.71 |
 | [Modal](providers/modal.md) | $9.92 | $23.80 | $475.92 | $1,737.11 |
-| [Runloop](providers/runloop.md) | $13.34 | $32.02 | $640.45 | $2,362.62 |
+| [Runloop](providers/runloop.md) (shutting down) | $13.34 | $32.02 | $640.45 | $2,362.62 |
 
 - **1,000 × 5 min**: 1,000 short code-execution sandboxes (1 vCPU, 2 GiB, 5 GB disk), 5 minutes each, 50 running at once, CPU 50% busy.
 - **100 × 1 h**: 100 coding-agent sandboxes (2 vCPU, 4 GiB, 10 GB disk), 1 hour each, all running at once, CPU 25% busy.
@@ -109,7 +110,7 @@ Full breakdown: [comparisons/hidden-costs.md](comparisons/hidden-costs.md).
 | [E2B](providers/e2b.md) | Hobby: one-time $100 credit, 1 h sessions, 20 concurrent | Pro $150/mo + usage | Continuous runtime 1 h (Hobby) / 24 h (Pro); pausing resets it | Billed while running; paused, killed or timed out = billing stops |
 | [Daytona](providers/daytona.md) | $200 free compute credit | No plan fee; limits rise with top-ups | No limit (auto-stop default 15 min; 0 = never) | Auto-stops after 15 min idle (default); stopped = disk only |
 | [Modal](providers/modal.md) | Starter: $30/mo free credits | Team $250/mo + usage | 5 min default, up to 24 h | Billed while running; optional idle_timeout terminates |
-| [Runloop](providers/runloop.md) | $50 trial credit (3 running devboxes) | Basic: usage only; Pro $250/mo + usage (adds suspend/resume) | 1 h default lifetime, configurable | Billed while running (by default nothing happens on idle); suspend (Pro plan) = storage only |
+| [Runloop](providers/runloop.md) (shutting down) | $50 trial credit (3 running devboxes) | Basic: usage only; Pro $250/mo + usage (adds suspend/resume) | 1 h default lifetime, configurable | Billed while running (by default nothing happens on idle); suspend (Pro plan) = storage only |
 | [Vercel Sandbox](providers/vercel.md) | Hobby: 5 h active CPU, 420 GB-hr memory/mo; 45 min sessions; 10 concurrent | Pro $20/mo (credited against usage) | 45 min (Hobby), 24 h (Pro); resets on stop/resume | Memory billed while running; CPU only when busy; stopped = snapshot storage |
 | [Cloudflare Sandbox](providers/cloudflare.md) | Included in Workers Paid: 375 vCPU-min, 25 GiB-hr memory/mo | Workers Paid $5/mo + usage | No published max; keepAlive keeps billing | Memory/disk billed while awake; CPU only when busy; sleeps after 10 min (default) |
 | [Sprites (Fly.io)](providers/sprites.md) | $30 trial credit | Pay-as-you-go; prepaid tiers (e.g. Hero $100/mo) | No limit (persistent) | Only billed while running; pauses after ~30 s idle (warm/cold not billed) |
