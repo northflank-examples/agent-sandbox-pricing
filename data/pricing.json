@@ -225,7 +225,10 @@
             "monthly_fee": 0,
             "max_concurrent_sandboxes": 20,
             "max_concurrent_vcpu": null,
-            "max_session_hours": 1
+            "max_session_hours": 1,
+            "max_sandbox_vcpu": 8,
+            "max_sandbox_memory_gib": 8,
+            "max_sandbox_disk_gb": 10
           },
           {
             "name": "Pro",
@@ -294,7 +297,15 @@
           "Memory GiB $0.0162/h",
           "Storage GiB $0.000108/h * Price per GiB after first 5 free",
           "All billing is calculated per second"
-        ]
+        ],
+        "max_size": {
+          "vcpu": 4,
+          "memory_gib": 8,
+          "disk_gb": 10,
+          "hard": false,
+          "quote": "Organizations get a maximum sandbox resource limit of 4 vCPUs, 8GB RAM, and 10GB disk.",
+          "source": "https://www.daytona.io/docs/en/sandboxes"
+        }
       },
       "storage": {
         "summary": "First 5 GiB free, then $0.000108/GiB-hr (~$0.08/GiB-mo)",
@@ -383,7 +394,15 @@
           "Modal Sandbox + Notebooks pricing: CPU Physical core (2 vCPU equivalent) $0.00003942 / core / sec",
           "Memory $0.00000667 / GiB / sec",
           "You pay for max(request, actual)"
-        ]
+        ],
+        "max_size": {
+          "vcpu": null,
+          "memory_gib": null,
+          "disk_gb": 3072,
+          "hard": true,
+          "quote": "The maximum disk size is 3.0 TiB (3,145,728 MiB). (A CPU and memory maximum is enforced at creation but not published.)",
+          "source": "https://modal.com/docs/guide/resources"
+        }
       },
       "storage": {
         "summary": "Volumes $0.09/GiB-mo (1 TiB/mo free)",
@@ -425,7 +444,8 @@
       "sources": [
         "https://modal.com/pricing",
         "https://modal.com/docs/guide/sandbox",
-        "https://modal.com/docs/guide/sandbox-resources"
+        "https://modal.com/docs/guide/sandbox-resources",
+        "https://modal.com/docs/guide/resources"
       ],
       "open_questions": [
         "Billed on max(request, actual usage). Modal recommends requesting ~p50-75 of CPU and bursting, which can cost less than the fixed-size figures here.",
@@ -457,7 +477,15 @@
           "Devbox Memory $0.0252 / GB-hr",
           "Devbox Storage $0.00034236 / GB-hr",
           "MEDIUM 2 CPU / 4 GB / 8 GB disk $0.3195"
-        ]
+        ],
+        "max_size": {
+          "vcpu": 16,
+          "memory_gib": 64,
+          "disk_gb": 64,
+          "hard": true,
+          "quote": "CPU: ... max is 16 cores. Memory: ... max is 64GiB. Storage: ... max is 64GiB.",
+          "source": "https://docs.runloop.ai/docs/devboxes/configuration/sizes"
+        }
       },
       "storage": {
         "summary": "Devbox disk $0.00034236/GB-hr (~$0.25/GB-mo); snapshots ~$0.05/GB-mo",
@@ -525,7 +553,15 @@
           "Sandbox Provisioned Memory $0.0212/GB-hour",
           "Sandbox Creations $0.60/1M",
           "Provisioned memory is billed in 1 minute minimum increments"
-        ]
+        ],
+        "max_size": {
+          "vcpu": 32,
+          "memory_gib": 64,
+          "disk_gb": 64,
+          "hard": true,
+          "quote": "Maximum vCPUs / memory / disk: Hobby 4 / 8GB / 64 GB, Pro 8 / 16GB / 64 GB, Enterprise 32 / 64GB / 64 GB",
+          "source": "https://vercel.com/docs/vercel-sandbox/pricing"
+        }
       },
       "storage": {
         "summary": "64 GB ephemeral NVMe included; snapshots $0.08/GB-mo",
@@ -546,14 +582,18 @@
             "monthly_fee": 0,
             "max_concurrent_sandboxes": 10,
             "max_concurrent_vcpu": null,
-            "max_session_hours": 0.75
+            "max_session_hours": 0.75,
+            "max_sandbox_vcpu": 4,
+            "max_sandbox_memory_gib": 8
           },
           {
             "name": "Pro",
             "monthly_fee": 20,
             "max_concurrent_sandboxes": 10000,
             "max_concurrent_vcpu": null,
-            "max_session_hours": 24
+            "max_session_hours": 24,
+            "max_sandbox_vcpu": 8,
+            "max_sandbox_memory_gib": 16
           }
         ],
         "custom_tier": "Enterprise (custom)"
@@ -597,7 +637,15 @@
           "+$0.0000025 per additional GiB-second",
           "+$0.00000007 per additional GB-second",
           "Memory and disk usage are based on the provisioned resources for the instance type you select, while CPU usage is based on active usage only"
-        ]
+        ],
+        "max_size": {
+          "vcpu": 4,
+          "memory_gib": 12,
+          "disk_gb": 20,
+          "hard": true,
+          "quote": "Custom instance types: Maximum vCPU 4, Maximum Memory 12 GiB, Maximum Disk 20 GB",
+          "source": "https://developers.cloudflare.com/containers/platform-details/limits/"
+        }
       },
       "storage": {
         "summary": "Disk $0.00000007/GB-s while running; no persistent volume pricing",
@@ -664,7 +712,15 @@
           "Memory Time: Actual memory usage $0.021875 /GB-hour",
           "Storage HOT $0.000683 /GB-hour, COLD $0.000027 /GB-hour",
           "All resources are billed hourly, based on actual usage"
-        ]
+        ],
+        "max_size": {
+          "vcpu": 8,
+          "memory_gib": null,
+          "disk_gb": 100,
+          "hard": true,
+          "quote": "Each Sprite runs with: 8 vCPUs, Memory the platform manages for you, 100 GB of storage",
+          "source": "https://docs.fly.io/sprites/concepts/lifecycle"
+        }
       },
       "storage": {
         "summary": "Persistent: hot ~$0.50/GB-mo while awake, cold ~$0.02/GB-mo",

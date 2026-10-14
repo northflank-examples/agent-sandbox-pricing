@@ -58,6 +58,7 @@ Last verified: **2026-10-14** · Official pricing: <https://modal.com/pricing>
 - <https://modal.com/pricing>
 - <https://modal.com/docs/guide/sandbox>
 - <https://modal.com/docs/guide/sandbox-resources>
+- <https://modal.com/docs/guide/resources>
 <!-- END GENERATED: provider:modal -->
 
 [← Back to the comparison](../README.md)

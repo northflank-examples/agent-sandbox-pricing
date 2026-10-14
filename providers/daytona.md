@@ -48,7 +48,7 @@ Last verified: **2026-10-14** · Official pricing: <https://www.daytona.io/prici
 | [1,000 × 5 min](../scenarios/short-lived-agents.md) | $6.90 | Tier 2 ($25 top-up) (no plan fee) |
 | [100 × 1 h](../scenarios/100-sandboxes.md) | $16.61 | Tier 3 ($500 top-up) (no plan fee) |
 | [1,000 × 2 h](../scenarios/large-batch.md) | $332.28 | Enterprise (custom; BYOC) |
-| [10 × 24/7 (month)](../scenarios/long-running-agents.md) | $1,220.71 | Tier 2 ($25 top-up) (no plan fee) |
+| [10 × 24/7 (month)](../scenarios/long-running-agents.md) | $1,220.71 | Tier 2 ($25 top-up) (no plan fee) ⚠ above the default max per sandbox (4 vCPU / 8 GiB / 10 GB disk); ask to raise it |
 
 ## Caveats and open questions
 
