@@ -27,3 +27,4 @@
 
 ## Data
 - [pricing.json](data/pricing.json): machine-readable rates, plans and scenarios
+- [Web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run): price a custom workload (sandbox count, runtime, size, CPU utilisation, concurrency) on every provider

@@ -1,6 +1,6 @@
 # Sandbox Cost Scenarios
 
-Four standard workloads, priced on every provider using the same assumptions. Totals are compute-only list prices: free credits, plan fees, egress and persistent storage are excluded. Each scenario page shows the cheapest plan that fits.
+Four standard workloads, priced on every provider using the same assumptions. Totals are list prices for compute plus disk while running: free credits, plan fees, egress and persistent storage are excluded. Each scenario page shows the cheapest plan that fits.
 
 <!-- BEGIN GENERATED: scenarios -->
 | Provider | [1,000 × 5 min](../scenarios/short-lived-agents.md) | [100 × 1 h](../scenarios/100-sandboxes.md) | [1,000 × 2 h](../scenarios/large-batch.md) | [10 × 24/7 (month)](../scenarios/long-running-agents.md) |
@@ -20,4 +20,4 @@ Four standard workloads, priced on every provider using the same assumptions. To
 - **10 × 24/7 (month)**: 10 always-on agent environments (2 vCPU, 4 GiB, 20 GB disk) running 24/7 for a 730-hour month, CPU 10% busy.
 <!-- END GENERATED: scenarios -->
 
-To price your own workload, run `python3 scripts/estimate.py --help`.
+To price your own workload, use the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run) or run `python3 scripts/estimate.py --help`.

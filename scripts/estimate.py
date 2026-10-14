@@ -4,8 +4,8 @@
 Example:
     python3 scripts/estimate.py --sandboxes 100 --minutes 60 --vcpu 2 --memory 4 --cpu-busy 0.25
 
-Prints compute-only list-price estimates (no free credits, egress or persistent
-storage) and the cheapest published plan that fits your concurrency.
+Prints list-price estimates for compute plus disk while running (no free credits,
+egress or persistent storage) and the cheapest published plan that fits your concurrency.
 """
 
 from __future__ import annotations

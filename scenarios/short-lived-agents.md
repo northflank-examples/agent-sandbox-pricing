@@ -14,7 +14,7 @@ Typical of **tool-call code execution**: an agent runs a snippet, reads the outp
 
 ## Estimated cost by provider
 
-Compute only, at list price. Excludes free credits, plan fees (see last column), egress and persistent storage.
+Compute plus disk while running, at list price. Excludes free credits, plan fees (see last column), egress and persistent storage.
 
 <!-- BEGIN GENERATED: scenario:short-lived-agents -->
 | Provider | Billed size | Per sandbox-hour | Compute total | Cheapest plan that fits |
@@ -38,7 +38,7 @@ Compute only, at list price. Excludes free credits, plan fees (see last column),
 - Northflank cloud has no 1 vCPU / 2 GB plan, so it is billed as its 1 vCPU / 4 GB plan ($0.05/hr). Cloudflare bills 1 vCPU with at least 3 GiB.
 - If your sandboxes live for seconds, cold-start time and snapshot/restore support usually matter more than the rate.
 
-Reproduce or change the assumptions:
+Reproduce or change the assumptions in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run?count=1000&duration=5&vcpu=1&memory_gib=2&disk_gb=5&cpu_utilisation=50&concurrency=50), or locally:
 
 ```bash
 python3 scripts/estimate.py --sandboxes 1000 --minutes 5 --vcpu 1 --memory 2 --disk 5 --cpu-busy 0.5 --concurrency 50

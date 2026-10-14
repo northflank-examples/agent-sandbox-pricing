@@ -14,7 +14,7 @@ An **evaluation or reinforcement-learning batch**: 1,000 sandboxes run in parall
 
 ## Estimated cost by provider
 
-Compute only, at list price. Excludes free credits, plan fees (see last column), egress and persistent storage.
+Compute plus disk while running, at list price. Excludes free credits, plan fees (see last column), egress and persistent storage.
 
 <!-- BEGIN GENERATED: scenario:large-batch -->
 | Provider | Billed size | Per sandbox-hour | Compute total | Cheapest plan that fits |
@@ -36,7 +36,7 @@ Compute only, at list price. Excludes free credits, plan fees (see last column),
 - At this concurrency, **plan limits dominate**. E2B needs its $1,150/mo concurrency add-on. Daytona's top tier allows 500 vCPU (this needs 2,000), and so does Cloudflare's account limit (1,500 vCPU), so both require enterprise arrangements.
 - Utilisation is assumed at 50% because eval workloads run tests and builds.
 
-Reproduce or change the assumptions:
+Reproduce or change the assumptions in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run?count=1000&duration=2&unit=60&cpu_utilisation=50&concurrency=1000), or locally:
 
 ```bash
 python3 scripts/estimate.py --sandboxes 1000 --minutes 120 --vcpu 2 --memory 4 --disk 10 --cpu-busy 0.5 --concurrency 1000

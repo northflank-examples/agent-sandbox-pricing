@@ -4,7 +4,7 @@ An open, source-linked comparison of what it costs to run **AI agent sandboxes**
 
 - **Prices last verified:** 2026-10-12 (each provider page shows its own verification date)
 - **Providers:** [Northflank](providers/northflank.md) · [E2B](providers/e2b.md) · [Daytona](providers/daytona.md) · [Modal](providers/modal.md) · [Vercel Sandbox](providers/vercel.md) · [Cloudflare Sandbox](providers/cloudflare.md) · [Runloop](providers/runloop.md) · [Sprites (Fly.io)](providers/sprites.md)
-- **Data:** every number comes from [`data/pricing.json`](data/pricing.json), and every table below is generated from it. Run the [estimator](#estimate-your-own-workload) for your own workload.
+- **Data:** every number comes from [`data/pricing.json`](data/pricing.json), and every table below is generated from it. Price your own workload in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run) or the [CLI](#estimate-your-own-workload).
 
 > **Disclosure:** this repository is maintained by [Northflank](https://northflank.com/product/sandboxes), one of the providers compared. To keep it fair, every provider uses the same [methodology](methodology.md), every rate links to the vendor's own pricing page, and corrections from any vendor or user are welcome via [pull request](CONTRIBUTING.md).
 
@@ -42,7 +42,7 @@ List prices for one sandbox with **2 vCPU and 4 GiB RAM**, sorted by the price f
 
 ## Cost by workload
 
-Hourly rates don't answer "what will my bill be?", so here are four standard agent workloads, priced on every provider. Totals are **compute only at list price**: no free credits, plan fees, egress or persistent storage. Each scenario page also shows which plan you'd need to reach that concurrency.
+Hourly rates don't answer "what will my bill be?", so here are four standard agent workloads, priced on every provider. Totals are **compute plus disk while running, at list price** (disk is $0 where the provider includes it): no free credits, plan fees, egress or persistent storage. Each scenario page also shows which plan you'd need to reach that concurrency.
 
 <!-- BEGIN GENERATED: scenarios -->
 | Provider | [1,000 × 5 min](scenarios/short-lived-agents.md) | [100 × 1 h](scenarios/100-sandboxes.md) | [1,000 × 2 h](scenarios/large-batch.md) | [10 × 24/7 (month)](scenarios/long-running-agents.md) |
@@ -96,7 +96,7 @@ The main cost drivers, roughly in order of impact:
 - **Forced resource ratios.** On Cloudflare you can't buy 2 vCPU with 4 GiB. The minimum is 6 GiB, and you pay for it.
 - **Plan fees and concurrency caps.** E2B's per-second rate is the same as Daytona's, but 1,000 concurrent sandboxes on E2B adds $1,150/mo.
 - **Session limits.** Modal sandboxes have a hard 24 h maximum lifetime. E2B Pro and Vercel Pro limit a single continuous session to 24 h, but pausing and resuming resets the clock. Always-on agents must build snapshot/restore or pause/resume logic, or move to an enterprise plan.
-- **Line items outside compute.** These include Cloudflare's Durable Objects and Workers requests, Vercel's per-creation fee, Runloop's metered disk, and egress, which several vendors don't publish at all.
+- **Line items beyond CPU and memory.** Metered disk (Runloop, Sprites hot storage, Cloudflare, Daytona above 5 GiB) and Vercel's per-creation fee are in the scenario totals. Cloudflare's Durable Objects and Workers requests and egress are not, and several vendors don't publish egress prices at all.
 
 Full breakdown: [comparisons/hidden-costs.md](comparisons/hidden-costs.md).
 
@@ -119,7 +119,9 @@ Storage, egress, GPU, isolation technology and BYOC options are in [comparisons/
 
 ## Estimate your own workload
 
-The estimator has no dependencies beyond Python 3.9+:
+**Web:** [p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run). Enter your sandbox count, runtime, size and CPU utilisation and it prices the workload on every provider, using the same data and model as the tables above. Estimates have shareable links.
+
+**CLI:** no dependencies beyond Python 3.9+:
 
 ```bash
 git clone https://github.com/northflank-examples/agent-sandbox-pricing.git
@@ -131,7 +133,7 @@ It prints the per-sandbox-hour price, the compute total and the cheapest publish
 
 ### Web estimator
 
-The same model runs in the browser in [`web/`](web/) (a static page, no build step). To run it locally:
+The [hosted estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run) is the static page in [`web/`](web/) (no build step). To run it locally:
 
 ```bash
 python3 -m http.server 8000   # from the repo root, then open http://localhost:8000/web/
@@ -143,7 +145,7 @@ To deploy it, build the root [`Dockerfile`](Dockerfile) (nginx serving `web/` an
 
 ### What is the cheapest AI agent sandbox provider?
 
-It depends on how busy your sandboxes are. For sandboxes that do real work (CPU more than about 10% busy), **Northflank** has the lowest list price in this comparison: $0.0667/hr for 2 vCPU / 4 GiB. For mostly-idle sandboxes, **Cloudflare Sandbox** can be cheaper on compute because it bills CPU only while active. It also requires the $5/mo Workers Paid plan and adds Durable Objects charges. Check your own numbers with the [estimator](#estimate-your-own-workload).
+It depends on how busy your sandboxes are. For sandboxes that do real work (CPU more than about 10% busy), **Northflank** has the lowest list price in this comparison: $0.0667/hr for 2 vCPU / 4 GiB. For mostly-idle sandboxes, **Cloudflare Sandbox** can be cheaper on compute because it bills CPU only while active. It also requires the $5/mo Workers Paid plan and adds Durable Objects charges. Check your own numbers with the [estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run).
 
 ### How much does it cost to run 100 AI agents?
 
@@ -227,7 +229,8 @@ comparisons/
   hidden-costs.md             what the per-hour rate doesn't tell you
 scenarios/                    four standard workloads, priced per provider
 data/pricing.json             single source of truth
-scripts/estimate.py           price your own workload
+scripts/estimate.py           price your own workload (CLI)
+web/                          the same estimator as a web page
 scripts/validate.py           checks the model against vendor-published prices
 scripts/generate.py           regenerates every table from the data
 ```
