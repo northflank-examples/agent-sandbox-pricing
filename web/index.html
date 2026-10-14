@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Sandbox Cost Estimator</title>
+  <meta name="description" content="Estimate what your AI agent sandbox workload costs on Northflank, E2B, Daytona, Modal, Vercel, Cloudflare, Runloop and Sprites, using source-linked list prices.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Agent Sandbox Pricing</span>
+    <nav class="topnav">
+      <a href="https://github.com/northflank-examples/agent-sandbox-pricing/blob/main/methodology.md">Methodology</a>
+      <a href="https://github.com/northflank-examples/agent-sandbox-pricing">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">AI agent sandbox pricing</p>
+      <h1>What will your sandboxes cost?</h1>
+      <p class="lede">Describe your workload and compare compute costs across 8 providers at list price. Every rate links to the vendor's own pricing page.</p>
+    </section>
+
+    <div class="layout">
+      <form id="form" class="panel inputs" autocomplete="off">
+        <div class="field">
+          <span class="label">Start from a scenario</span>
+          <div id="presets" class="chips" role="group" aria-label="Scenario presets"></div>
+        </div>
+
+        <div class="grid2">
+          <label class="field">
+            <span class="label">Sandboxes</span>
+            <input name="count" type="number" min="1" step="1" required>
+            <span class="hint">Total sandboxes run</span>
+          </label>
+          <label class="field">
+            <span class="label">Running at once</span>
+            <input name="concurrency" type="number" min="1" step="1" placeholder="All">
+            <span class="hint">Decides which plan you need</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <span class="label" id="dur-label">Runtime per sandbox</span>
+          <div class="combo" role="group" aria-labelledby="dur-label">
+            <input name="duration" type="number" min="0.01" step="any" required aria-label="Runtime amount">
+            <select name="unit" aria-label="Runtime unit">
+              <option value="1">minutes</option>
+              <option value="60">hours</option>
+              <option value="1440">days</option>
+              <option value="43800">months (730 h)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <label class="field">
+            <span class="label">vCPU</span>
+            <input name="vcpu" type="number" min="0.1" step="any" required>
+          </label>
+          <label class="field">
+            <span class="label">RAM (GiB)</span>
+            <input name="memory_gib" type="number" min="0.1" step="any" required>
+          </label>
+          <label class="field">
+            <span class="label">Disk (GB)</span>
+            <input name="disk_gb" type="number" min="0" step="any" required>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label row"><span>CPU busy</span><output id="busy-out"></output></span>
+          <input name="cpu_utilisation" type="range" min="0" max="100" step="1">
+          <span class="hint">Share of runtime the CPU is working. Only changes the price on providers that bill active CPU or usage (Vercel, Cloudflare, Sprites).</span>
+        </label>
+      </form>
+
+      <section class="results" aria-live="polite">
+        <div id="summary" class="panel summary"></div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Compute cost for this workload</h2>
+            <span id="workload-desc" class="muted small"></span>
+          </div>
+          <ol id="bars" class="bars"></ol>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Breakdown</h2>
+            <button id="copy-link" type="button" class="btn btn-ghost btn-sm">Copy link to this estimate</button>
+          </div>
+          <div class="table-scroll">
+            <table id="table">
+              <thead>
+                <tr>
+                  <th scope="col">Provider</th>
+                  <th scope="col" class="num">Per sandbox-hr</th>
+                  <th scope="col" class="num">Compute total</th>
+                  <th scope="col">Billed size</th>
+                  <th scope="col">Billing model</th>
+                  <th scope="col">Plan that fits</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="footnote">
+            Compute only, at list price: no free credits, egress, persistent storage, snapshots or enterprise discounts. Plan fees are shown separately.
+            <strong>Bold</strong> billed sizes mean the provider bills more than you asked for (fixed plans or a minimum RAM-per-vCPU ratio).
+            ⚠ marks a plan limit that doesn't fit or isn't published.
+          </p>
+        </div>
+
+        <aside class="panel cta">
+          <div>
+            <h2>Run your agents on Northflank</h2>
+            <p class="muted">Per-second billing, microVM isolation, no plan fee or concurrency cap, and BYOC on AWS, GCP, Azure and more.</p>
+          </div>
+          <a class="btn btn-primary" href="https://northflank.com/product/sandboxes">Get started</a>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <footer class="wrap footer">
+    <p><strong>Disclosure:</strong> this estimator is maintained by Northflank, one of the providers compared. Every provider uses the same <a href="https://github.com/northflank-examples/agent-sandbox-pricing/blob/main/methodology.md">methodology</a>, and corrections are welcome via <a href="https://github.com/northflank-examples/agent-sandbox-pricing/blob/main/CONTRIBUTING.md">pull request</a>.</p>
+    <p id="updated" class="muted"></p>
+  </footer>
+</body>
+</html>

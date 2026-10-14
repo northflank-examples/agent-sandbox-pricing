@@ -129,6 +129,16 @@ python3 scripts/estimate.py --sandboxes 500 --minutes 30 --vcpu 2 --memory 4 --c
 
 It prints the per-sandbox-hour price, the compute total and the cheapest published plan that fits your concurrency for every provider.
 
+### Web estimator
+
+The same model runs in the browser in [`web/`](web/) (a static page, no build step). To run it locally:
+
+```bash
+python3 -m http.server 8000   # from the repo root, then open http://localhost:8000/web/
+```
+
+To deploy it, build the root [`Dockerfile`](Dockerfile) (nginx serving `web/` and `data/pricing.json` on port 8080), for example as a Northflank combined service. CI checks that [`web/model.js`](web/model.js) gives the same results as [`scripts/model.py`](scripts/model.py) (`python3 scripts/check_web_model.py`, needs Node.js 18+).
+
 ## FAQ
 
 ### What is the cheapest AI agent sandbox provider?
