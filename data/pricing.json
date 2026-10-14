@@ -1,0 +1,765 @@
+{
+  "schema_version": 1,
+  "last_updated": "2026-10-14",
+  "currency": "USD",
+  "notes": [
+    "All rates are list prices for the default/US region, taken from official vendor pages on the date in each provider's last_verified field.",
+    "null means 'not published or not verified', never 'free'.",
+    "Memory rates quoted per GB are treated as per GiB. For Northflank this is confirmed: its published plan prices (e.g. 4096 MB) only reproduce if GB = 1024 MB. See methodology.md.",
+    "cpu_per_vcpu_hour is normalised to one vCPU (one hyperthread). Modal quotes per physical core = 2 vCPU."
+  ],
+  "providers": [
+    {
+      "id": "northflank",
+      "name": "Northflank",
+      "maintainer_disclosure": true,
+      "website": "https://northflank.com/product/sandboxes",
+      "pricing_url": "https://northflank.com/pricing",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "per second",
+        "minimum_billed_seconds": null,
+        "idle": "Billed while running; paused = no compute charge (volumes still billed)"
+      },
+      "compute": {
+        "model": "allocated",
+        "cpu_per_vcpu_hour": 0.01667,
+        "memory_per_gib_hour": 0.00833,
+        "disk_per_gb_hour": 0,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": null,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "CPU $ 0.01667 / vCPU / hour",
+          "Memory $ 0.00833 / GB / hour",
+          "nf-compute-200 vCPU 2 dedicated Memory 4096 MB Price $ 48.00 /month ($ 0.0667 /hr)",
+          "Northflank cloud bills compute per second of runtime",
+          "Ephemeral storage is included in the compute charge"
+        ],
+        "fixed_sizes": [
+          {
+            "name": "nf-compute-10",
+            "vcpu": 0.1,
+            "memory_gib": 0.25
+          },
+          {
+            "name": "nf-compute-100-1",
+            "vcpu": 1,
+            "memory_gib": 1
+          },
+          {
+            "name": "nf-compute-100-4",
+            "vcpu": 1,
+            "memory_gib": 4
+          },
+          {
+            "name": "nf-compute-200",
+            "vcpu": 2,
+            "memory_gib": 4
+          },
+          {
+            "name": "nf-compute-200-8",
+            "vcpu": 2,
+            "memory_gib": 8
+          },
+          {
+            "name": "nf-compute-400",
+            "vcpu": 4,
+            "memory_gib": 8
+          },
+          {
+            "name": "nf-compute-200-16",
+            "vcpu": 2,
+            "memory_gib": 16
+          },
+          {
+            "name": "nf-compute-400-16",
+            "vcpu": 4,
+            "memory_gib": 16
+          },
+          {
+            "name": "nf-compute-800-8",
+            "vcpu": 8,
+            "memory_gib": 8
+          },
+          {
+            "name": "nf-compute-800-16",
+            "vcpu": 8,
+            "memory_gib": 16
+          },
+          {
+            "name": "nf-compute-800-24",
+            "vcpu": 8,
+            "memory_gib": 24
+          },
+          {
+            "name": "nf-compute-800-32",
+            "vcpu": 8,
+            "memory_gib": 32
+          },
+          {
+            "name": "nf-compute-1200-24",
+            "vcpu": 12,
+            "memory_gib": 24
+          },
+          {
+            "name": "nf-compute-800-40",
+            "vcpu": 8,
+            "memory_gib": 40
+          },
+          {
+            "name": "nf-compute-1600-32",
+            "vcpu": 16,
+            "memory_gib": 32
+          },
+          {
+            "name": "nf-compute-2000-40",
+            "vcpu": 20,
+            "memory_gib": 40
+          },
+          {
+            "name": "nf-compute-32-128",
+            "vcpu": 32,
+            "memory_gib": 128
+          },
+          {
+            "name": "nf-compute-32-488",
+            "vcpu": 32,
+            "memory_gib": 488
+          }
+        ],
+        "fixed_sizes_note": "Northflank cloud sells fixed plans (nf-compute-*); custom sizes are available on BYOC. The cheapest plan that fits is billed."
+      },
+      "storage": {
+        "summary": "Ephemeral disk included; SSD volumes $0.15/GB-mo",
+        "persistent_per_gb_month": 0.15,
+        "snapshot_per_gb_month": null
+      },
+      "network": {
+        "egress": "$0.06/GB",
+        "egress_per_gb": 0.06
+      },
+      "gpu": "L4 $0.80/hr, A100 80GB $1.76/hr, H100 $2.74/hr, RTX PRO 6000 $3.00/hr (GPU plans include CPU and RAM)",
+      "plans": {
+        "free": "Free tier: 2 services, 1 database, 2 cron jobs",
+        "paid_entry": "Pay-as-you-go, no plan fee",
+        "tiers": [
+          {
+            "name": "Pay-as-you-go",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": "unlimited",
+            "max_concurrent_vcpu": "unlimited",
+            "max_session_hours": "unlimited"
+          }
+        ],
+        "custom_tier": "Enterprise (custom pricing for high-scale or custom deployments)"
+      },
+      "platform": {
+        "isolation": "microVM (Kata Containers) for CPU sandboxes; gVisor for GPU sandboxes",
+        "byoc": "Yes: AWS, GCP, Azure, Oracle, CoreWeave, Civo, or your own Kubernetes cluster ($0.02083/vCPU-hr management fee, $0 memory; cloud costs separate)",
+        "max_session": "No limit",
+        "limits_published": true,
+        "concurrency": "No limit"
+      },
+      "sources": [
+        "https://northflank.com/pricing",
+        "https://northflank.com/product/sandboxes",
+        "https://northflank.com/docs/v1/application/sandboxes/sandboxes-on-northflank-cloud"
+      ],
+      "open_questions": [
+        "Northflank cloud uses fixed compute plans; custom sizes are available on BYOC.",
+        "BYOC is billed as a management fee on top of your own cloud bill: $0.02083/vCPU-hour, $0.00/GB-hour memory, $0.00139/GB vRAM-hour for GPUs. Enterprise pricing may apply for high-scale or custom deployments."
+      ],
+      "byoc_pricing": {
+        "source": "https://northflank.com/pricing (Bring your own cloud tab)",
+        "cpu_per_vcpu_hour": 0.02083,
+        "memory_per_gb_hour": 0.0,
+        "gpu_per_gb_vram_hour": 0.00139,
+        "notes": [
+          "Cloud provider costs are separate (paid directly to your cloud).",
+          "Enterprise pricing may apply for high-scale or custom deployments."
+        ]
+      }
+    },
+    {
+      "id": "e2b",
+      "name": "E2B",
+      "website": "https://e2b.dev",
+      "pricing_url": "https://e2b.dev/pricing",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "per second",
+        "minimum_billed_seconds": null,
+        "idle": "Billed while running; paused, killed or timed out = billing stops"
+      },
+      "compute": {
+        "model": "allocated",
+        "cpu_per_vcpu_hour": 0.0504,
+        "memory_per_gib_hour": 0.0162,
+        "disk_per_gb_hour": 0,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": null,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "vCPUs 1 Hobby / Pro $0.000014/s",
+          "Memory (GiB) 1 Hobby / Pro $0.0000045/s",
+          "You pay per second for compute resources while your sandbox is running"
+        ]
+      },
+      "storage": {
+        "summary": "Included (10 GiB Hobby / 20 GiB Pro)",
+        "persistent_per_gb_month": null,
+        "snapshot_per_gb_month": null
+      },
+      "network": {
+        "egress": "Not published",
+        "egress_per_gb": null
+      },
+      "gpu": "Not listed",
+      "plans": {
+        "free": "Hobby: one-time $100 credit, 1 h sessions, 20 concurrent",
+        "paid_entry": "Pro $150/mo + usage",
+        "tiers": [
+          {
+            "name": "Hobby",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": 20,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 1
+          },
+          {
+            "name": "Pro",
+            "monthly_fee": 150,
+            "max_concurrent_sandboxes": 100,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 24
+          },
+          {
+            "name": "Pro + 500 concurrency",
+            "monthly_fee": 650,
+            "max_concurrent_sandboxes": 600,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 24
+          },
+          {
+            "name": "Pro + 1,000 concurrency",
+            "monthly_fee": 1150,
+            "max_concurrent_sandboxes": 1100,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 24
+          }
+        ],
+        "custom_tier": "Enterprise ($3,000/mo minimum; multi-day sessions, BYOC)"
+      },
+      "platform": {
+        "isolation": "Firecracker microVM",
+        "byoc": "Enterprise (AWS, GCP, Azure); Apache-2.0 runtime can be self-hosted",
+        "max_session": "Continuous runtime 1 h (Hobby) / 24 h (Pro); pausing resets it",
+        "limits_published": true
+      },
+      "sources": [
+        "https://e2b.dev/pricing",
+        "https://e2b.dev/docs/billing",
+        "https://e2b.dev/docs/sandbox/persistence",
+        "https://e2b.dev/docs/byoc",
+        "https://github.com/e2b-dev/infra"
+      ],
+      "open_questions": [
+        "Default RAM: the pricing page marks 4 GiB as default; the billing docs say '2 vCPU, 512 MiB RAM'.",
+        "Hobby uses the default sandbox size; custom CPU/RAM requires Pro.",
+        "Egress pricing and paused-sandbox storage pricing are not published."
+      ]
+    },
+    {
+      "id": "daytona",
+      "name": "Daytona",
+      "website": "https://www.daytona.io",
+      "pricing_url": "https://www.daytona.io/pricing",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "per second",
+        "minimum_billed_seconds": null,
+        "idle": "Auto-stops after 15 min idle (default); stopped = disk only"
+      },
+      "compute": {
+        "model": "allocated",
+        "cpu_per_vcpu_hour": 0.0504,
+        "memory_per_gib_hour": 0.0162,
+        "disk_per_gb_hour": 0.000108,
+        "disk_free_gb": 5,
+        "min_memory_gib_per_vcpu": null,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "Compute vCPU $0.0504/h",
+          "Memory GiB $0.0162/h",
+          "Storage GiB $0.000108/h * Price per GiB after first 5 free",
+          "All billing is calculated per second"
+        ]
+      },
+      "storage": {
+        "summary": "First 5 GiB free, then $0.000108/GiB-hr (~$0.08/GiB-mo)",
+        "persistent_per_gb_month": 0.0788,
+        "snapshot_per_gb_month": null
+      },
+      "network": {
+        "egress": "Not published (restricted on Tier 1-2)",
+        "egress_per_gb": null
+      },
+      "gpu": "Preemptible: H100 $2.27/hr, H200 $2.61/hr, B200 $3.59/hr; on-demand: H100 $3.95/hr",
+      "plans": {
+        "free": "$200 free compute credit",
+        "paid_entry": "No plan fee; limits rise with top-ups",
+        "tiers": [
+          {
+            "name": "Tier 1",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": 10,
+            "max_session_hours": null
+          },
+          {
+            "name": "Tier 2 ($25 top-up)",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": 100,
+            "max_session_hours": null
+          },
+          {
+            "name": "Tier 3 ($500 top-up)",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": 250,
+            "max_session_hours": null
+          },
+          {
+            "name": "Tier 4 ($2,000 top-up every 30 days)",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": 500,
+            "max_session_hours": null
+          }
+        ],
+        "custom_tier": "Enterprise (custom; BYOC)"
+      },
+      "platform": {
+        "isolation": "Containers by default; optional VM sandboxes with their own kernel",
+        "byoc": "Enterprise (bring your own compute)",
+        "max_session": "No limit (auto-stop default 15 min; 0 = never)",
+        "limits_published": true
+      },
+      "sources": [
+        "https://www.daytona.io/pricing",
+        "https://www.daytona.io/docs/en/billing",
+        "https://www.daytona.io/docs/en/limits",
+        "https://www.daytona.io/docs/en/sandboxes",
+        "https://www.daytona.io/docs/en/isolation"
+      ],
+      "open_questions": [
+        "Egress pricing not published.",
+        "Tier 1 memory pool is listed as both 10 GiB and 20 GiB on the limits page.",
+        "Tier limits are a shared pool across all running sandboxes."
+      ]
+    },
+    {
+      "id": "modal",
+      "name": "Modal",
+      "website": "https://modal.com",
+      "pricing_url": "https://modal.com/pricing",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "per second",
+        "minimum_billed_seconds": null,
+        "idle": "Billed while running; optional idle_timeout terminates"
+      },
+      "compute": {
+        "model": "request_or_usage",
+        "cpu_per_vcpu_hour": 0.070956,
+        "memory_per_gib_hour": 0.024012,
+        "disk_per_gb_hour": 0,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": null,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "Modal Sandbox + Notebooks pricing: CPU Physical core (2 vCPU equivalent) $0.00003942 / core / sec",
+          "Memory $0.00000667 / GiB / sec",
+          "You pay for max(request, actual)"
+        ]
+      },
+      "storage": {
+        "summary": "Volumes $0.09/GiB-mo (1 TiB/mo free)",
+        "persistent_per_gb_month": 0.09,
+        "snapshot_per_gb_month": null
+      },
+      "network": {
+        "egress": "$0.04/GiB (1 TiB/mo included on Starter)",
+        "egress_per_gb": 0.04
+      },
+      "gpu": "Standard GPU rates + CPU/RAM: L4 ~$0.80/hr, A100 80GB ~$2.50/hr, H100 ~$3.95/hr",
+      "plans": {
+        "free": "Starter: $30/mo free credits",
+        "paid_entry": "Team $250/mo + usage",
+        "tiers": [
+          {
+            "name": "Starter",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": 100,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 24
+          },
+          {
+            "name": "Team",
+            "monthly_fee": 250,
+            "max_concurrent_sandboxes": 5000,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 24
+          }
+        ],
+        "custom_tier": "Enterprise (custom)"
+      },
+      "platform": {
+        "isolation": "gVisor (default) or VM runtime",
+        "byoc": "No",
+        "max_session": "5 min default, up to 24 h",
+        "limits_published": true
+      },
+      "sources": [
+        "https://modal.com/pricing",
+        "https://modal.com/docs/guide/sandbox",
+        "https://modal.com/docs/guide/sandbox-resources"
+      ],
+      "open_questions": [
+        "Billed on max(request, actual usage). Modal recommends requesting ~p50-75 of CPU and bursting, which can cost less than the fixed-size figures here.",
+        "Sandbox CPU/RAM rates are ~3x Modal Function rates; the pricing page does not state why.",
+        "Snapshot pricing not published."
+      ]
+    },
+    {
+      "id": "runloop",
+      "name": "Runloop",
+      "website": "https://runloop.ai",
+      "pricing_url": "https://runloop.ai/pricing",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "per second",
+        "minimum_billed_seconds": null,
+        "idle": "Billed while running (by default nothing happens on idle); suspend (Pro plan) = storage only"
+      },
+      "compute": {
+        "model": "allocated",
+        "cpu_per_vcpu_hour": 0.108,
+        "memory_per_gib_hour": 0.0252,
+        "disk_per_gb_hour": 0.00034236,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": null,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "Devbox CPU $0.108 / CPU-hr",
+          "Devbox Memory $0.0252 / GB-hr",
+          "Devbox Storage $0.00034236 / GB-hr",
+          "MEDIUM 2 CPU / 4 GB / 8 GB disk $0.3195"
+        ]
+      },
+      "storage": {
+        "summary": "Devbox disk $0.00034236/GB-hr (~$0.25/GB-mo); snapshots ~$0.05/GB-mo",
+        "persistent_per_gb_month": 0.2499,
+        "snapshot_per_gb_month": 0.0526
+      },
+      "network": {
+        "egress": "Not published",
+        "egress_per_gb": null
+      },
+      "gpu": "Not listed",
+      "plans": {
+        "free": "$50 trial credit (3 running devboxes)",
+        "paid_entry": "Basic: usage only; Pro $250/mo + usage (adds suspend/resume)",
+        "tiers": [
+          {
+            "name": "Basic",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": null
+          }
+        ],
+        "custom_tier": "Enterprise (VPC deployment)"
+      },
+      "platform": {
+        "isolation": "microVM",
+        "byoc": "Enterprise (VPC deployment)",
+        "max_session": "1 h default lifetime, configurable",
+        "limits_published": false
+      },
+      "sources": [
+        "https://runloop.ai/pricing",
+        "https://docs.runloop.ai/docs/devboxes/configuration/sizes",
+        "https://docs.runloop.ai/docs/devboxes/lifecycle"
+      ],
+      "open_questions": [
+        "Egress pricing not published.",
+        "Paid-plan concurrency limits not published.",
+        "Pricing FAQ example ('2-CPU / 4 GB … 8 hours … approximately $2.73/day') does not match the listed unit rates, which give $2.53; the unit rates and size table agree with each other and are used here.",
+        "Suspend/resume is listed as a Pro plan feature."
+      ]
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel Sandbox",
+      "website": "https://vercel.com/docs/vercel-sandbox",
+      "pricing_url": "https://vercel.com/docs/vercel-sandbox/pricing",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "CPU: active time; memory: 1-min increments",
+        "minimum_billed_seconds": 60,
+        "idle": "Memory billed while running; CPU only when busy; stopped = snapshot storage"
+      },
+      "compute": {
+        "model": "active_cpu",
+        "cpu_per_vcpu_hour": 0.128,
+        "memory_per_gib_hour": 0.0212,
+        "disk_per_gb_hour": 0,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": 2,
+        "per_sandbox_fee": 6e-07,
+        "raw_quotes": [
+          "Sandbox Active CPU $0.128/hour",
+          "Sandbox Provisioned Memory $0.0212/GB-hour",
+          "Sandbox Creations $0.60/1M",
+          "Provisioned memory is billed in 1 minute minimum increments"
+        ]
+      },
+      "storage": {
+        "summary": "64 GB ephemeral NVMe included; snapshots $0.08/GB-mo",
+        "persistent_per_gb_month": 0.05,
+        "snapshot_per_gb_month": 0.08
+      },
+      "network": {
+        "egress": "Included in CDN (Pro); $0.15/GB (Enterprise)",
+        "egress_per_gb": null
+      },
+      "gpu": "Not offered",
+      "plans": {
+        "free": "Hobby: 5 h active CPU, 420 GB-hr memory/mo; 45 min sessions; 10 concurrent",
+        "paid_entry": "Pro $20/mo (credited against usage)",
+        "tiers": [
+          {
+            "name": "Hobby",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": 10,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 0.75
+          },
+          {
+            "name": "Pro",
+            "monthly_fee": 20,
+            "max_concurrent_sandboxes": 10000,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": 24
+          }
+        ],
+        "custom_tier": "Enterprise (custom)"
+      },
+      "platform": {
+        "isolation": "Firecracker microVM",
+        "byoc": "No",
+        "max_session": "45 min (Hobby), 24 h (Pro); resets on stop/resume",
+        "limits_published": true
+      },
+      "sources": [
+        "https://vercel.com/docs/vercel-sandbox/pricing",
+        "https://vercel.com/docs/vercel-sandbox/concepts"
+      ],
+      "open_questions": [
+        "Rates shown are iad1; other regions differ.",
+        "Each vCPU includes 2 GB memory; sizes are 1 or an even number of vCPUs."
+      ]
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare Sandbox",
+      "website": "https://developers.cloudflare.com/sandbox/",
+      "pricing_url": "https://developers.cloudflare.com/containers/pricing/",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "per 10 ms",
+        "minimum_billed_seconds": null,
+        "idle": "Memory/disk billed while awake; CPU only when busy; sleeps after 10 min (default)"
+      },
+      "compute": {
+        "model": "active_cpu",
+        "cpu_per_vcpu_hour": 0.072,
+        "memory_per_gib_hour": 0.009,
+        "disk_per_gb_hour": 0.000252,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": 3,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "+$0.000020 per additional vCPU-second",
+          "+$0.0000025 per additional GiB-second",
+          "+$0.00000007 per additional GB-second",
+          "Memory and disk usage are based on the provisioned resources for the instance type you select, while CPU usage is based on active usage only"
+        ]
+      },
+      "storage": {
+        "summary": "Disk $0.00000007/GB-s while running; no persistent volume pricing",
+        "persistent_per_gb_month": null,
+        "snapshot_per_gb_month": null
+      },
+      "network": {
+        "egress": "$0.025/GB NA/EU (1 TB included)",
+        "egress_per_gb": 0.025
+      },
+      "gpu": "Not offered",
+      "plans": {
+        "free": "Included in Workers Paid: 375 vCPU-min, 25 GiB-hr memory/mo",
+        "paid_entry": "Workers Paid $5/mo + usage",
+        "tiers": [
+          {
+            "name": "Workers Paid",
+            "monthly_fee": 5,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": 1500,
+            "max_session_hours": null
+          }
+        ],
+        "custom_tier": "Enterprise (custom limits)"
+      },
+      "platform": {
+        "isolation": "Firecracker microVM",
+        "byoc": "No",
+        "max_session": "No published max; keepAlive keeps billing",
+        "limits_published": true
+      },
+      "sources": [
+        "https://developers.cloudflare.com/containers/pricing/",
+        "https://developers.cloudflare.com/sandbox/platform/pricing/",
+        "https://developers.cloudflare.com/containers/platform-details/limits/"
+      ],
+      "open_questions": [
+        "Durable Objects and Workers request charges apply on top and are not modelled.",
+        "Custom instance types need at least 3 GiB memory per vCPU (1-4 vCPU), so 2 vCPU is billed with at least 6 GiB.",
+        "Account limits are defaults and can be increased."
+      ]
+    },
+    {
+      "id": "sprites",
+      "name": "Sprites (Fly.io)",
+      "website": "https://sprites.dev",
+      "pricing_url": "https://fly.io/sprites",
+      "last_verified": "2026-10-14",
+      "billing": {
+        "granularity": "usage-metered (page says hourly; docs say per-second)",
+        "minimum_billed_seconds": null,
+        "idle": "Only billed while running; pauses after ~30 s idle (warm/cold not billed)"
+      },
+      "compute": {
+        "model": "usage",
+        "cpu_per_vcpu_hour": 0.0385,
+        "memory_per_gib_hour": 0.021875,
+        "disk_per_gb_hour": 0.000683,
+        "disk_free_gb": null,
+        "min_memory_gib_per_vcpu": null,
+        "per_sandbox_fee": 0,
+        "raw_quotes": [
+          "CPU Time: Cumulative CPU usage measured by cpu.stat $0.0385 /CPU-hour",
+          "Memory Time: Actual memory usage $0.021875 /GB-hour",
+          "Storage HOT $0.000683 /GB-hour, COLD $0.000027 /GB-hour",
+          "All resources are billed hourly, based on actual usage"
+        ]
+      },
+      "storage": {
+        "summary": "Persistent: hot ~$0.50/GB-mo while awake, cold ~$0.02/GB-mo",
+        "persistent_per_gb_month": 0.02,
+        "snapshot_per_gb_month": null
+      },
+      "network": {
+        "egress": "Not metered today",
+        "egress_per_gb": 0
+      },
+      "gpu": "Not offered",
+      "plans": {
+        "free": "$30 trial credit",
+        "paid_entry": "Pay-as-you-go; prepaid tiers (e.g. Hero $100/mo)",
+        "tiers": [
+          {
+            "name": "Pay-as-you-go",
+            "monthly_fee": 0,
+            "max_concurrent_sandboxes": null,
+            "max_concurrent_vcpu": null,
+            "max_session_hours": null
+          }
+        ],
+        "custom_tier": "Higher tiers (Champion and above)"
+      },
+      "platform": {
+        "isolation": "microVM",
+        "byoc": "No",
+        "max_session": "No limit (persistent)",
+        "limits_published": false
+      },
+      "sources": [
+        "https://fly.io/sprites",
+        "https://docs.fly.io/sprites",
+        "https://docs.fly.io/sprites/concepts/lifecycle"
+      ],
+      "open_questions": [
+        "Fixed 8 vCPU / 100 GB per Sprite; memory is platform-managed. CPU and memory are billed on actual use, not allocation; this comparison assumes the stated memory is fully used.",
+        "The pricing page says 'billed hourly'; the docs comparison table says 'Per-second'.",
+        "Pay-as-you-go concurrency limits not published (Hero tier, $100/mo: 100 running)."
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "short-lived-agents",
+      "label": "1,000 × 5 min",
+      "description": "1,000 short code-execution sandboxes (1 vCPU, 2 GiB, 5 GB disk), 5 minutes each, 50 running at once, CPU 50% busy.",
+      "count": 1000,
+      "minutes": 5,
+      "vcpu": 1,
+      "memory_gib": 2,
+      "disk_gb": 5,
+      "cpu_utilisation": 0.5,
+      "concurrency": 50,
+      "repeat": 1
+    },
+    {
+      "id": "100-sandboxes",
+      "label": "100 × 1 h",
+      "description": "100 coding-agent sandboxes (2 vCPU, 4 GiB, 10 GB disk), 1 hour each, all running at once, CPU 25% busy.",
+      "count": 100,
+      "minutes": 60,
+      "vcpu": 2,
+      "memory_gib": 4,
+      "disk_gb": 10,
+      "cpu_utilisation": 0.25,
+      "concurrency": 100,
+      "repeat": 1
+    },
+    {
+      "id": "large-batch",
+      "label": "1,000 × 2 h",
+      "description": "1,000 sandboxes for an eval / RL batch (2 vCPU, 4 GiB, 10 GB disk), 2 hours each, all running at once, CPU 50% busy.",
+      "count": 1000,
+      "minutes": 120,
+      "vcpu": 2,
+      "memory_gib": 4,
+      "disk_gb": 10,
+      "cpu_utilisation": 0.5,
+      "concurrency": 1000,
+      "repeat": 1
+    },
+    {
+      "id": "long-running-agents",
+      "label": "10 × 24/7 (month)",
+      "description": "10 always-on agent environments (2 vCPU, 4 GiB, 20 GB disk) running 24/7 for a 730-hour month, CPU 10% busy.",
+      "count": 10,
+      "minutes": 43800,
+      "vcpu": 2,
+      "memory_gib": 4,
+      "disk_gb": 20,
+      "cpu_utilisation": 0.1,
+      "concurrency": 10,
+      "repeat": 1
+    }
+  ]
+}

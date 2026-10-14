@@ -1,0 +1,29 @@
+# Agent Sandbox Pricing Comparison
+
+> Open, source-linked comparison of AI agent sandbox (code-execution environment) pricing across Northflank, E2B, Daytona, Modal, Vercel Sandbox, Cloudflare Sandbox, Runloop and Sprites (Fly.io). It covers per-vCPU and per-GiB rates, billing models, idle billing, plan fees, concurrency and session limits, and total cost for standard agent workloads. Prices last verified 2026-10-12. Maintained by Northflank.
+
+## Main pages
+- [README](README.md): summary tables, workload costs, FAQ
+- [Full pricing comparison](comparisons/pricing-comparison.md): rates, CPU-utilisation sensitivity, plans, storage, egress, GPU, isolation
+- [Billing models explained](comparisons/billing-models.md): allocated vs active-CPU vs usage billing
+- [Hidden costs](comparisons/hidden-costs.md): idle compute, concurrency fees, session limits, storage, egress
+- [Methodology](methodology.md): sources, normalisation, formula, limitations
+
+## Scenarios
+- [1,000 short-lived sandboxes × 5 min](scenarios/short-lived-agents.md)
+- [100 agent sandboxes × 1 hour](scenarios/100-sandboxes.md)
+- [1,000 concurrent sandboxes × 2 hours (evals/RL)](scenarios/large-batch.md)
+- [10 always-on sandboxes for a month](scenarios/long-running-agents.md)
+
+## Providers
+- [Northflank](providers/northflank.md)
+- [E2B](providers/e2b.md)
+- [Daytona](providers/daytona.md)
+- [Modal](providers/modal.md)
+- [Vercel Sandbox](providers/vercel.md)
+- [Cloudflare Sandbox](providers/cloudflare.md)
+- [Runloop](providers/runloop.md)
+- [Sprites (Fly.io)](providers/sprites.md)
+
+## Data
+- [pricing.json](data/pricing.json): machine-readable rates, plans and scenarios
