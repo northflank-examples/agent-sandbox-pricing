@@ -14,7 +14,7 @@ A typical **coding-agent** workload: 100 agents each get their own sandbox for a
 
 ## Estimated cost by provider
 
-Compute only, at list price. Excludes free credits, plan fees (see last column), egress and persistent storage.
+Compute plus disk while running, at list price. Excludes free credits, plan fees (see last column), egress and persistent storage.
 
 <!-- BEGIN GENERATED: scenario:100-sandboxes -->
 | Provider | Billed size | Per sandbox-hour | Compute total | Cheapest plan that fits |
@@ -36,7 +36,7 @@ Compute only, at list price. Excludes free credits, plan fees (see last column),
 - 100 concurrent sandboxes exceeds the free tiers on E2B (20), Vercel (10) and Daytona Tier 1 (10 vCPU). Modal Starter's limit is exactly 100 containers.
 - Utilisation is assumed at 25%. If your agents mostly wait on LLM calls (5–10% busy), Vercel and Cloudflare get noticeably cheaper. See the [sensitivity table](../comparisons/pricing-comparison.md#how-cpu-utilisation-changes-the-price).
 
-Reproduce or change the assumptions:
+Reproduce or change the assumptions in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run?concurrency=100), or locally:
 
 ```bash
 python3 scripts/estimate.py --sandboxes 100 --minutes 60 --vcpu 2 --memory 4 --disk 10 --cpu-busy 0.25 --concurrency 100

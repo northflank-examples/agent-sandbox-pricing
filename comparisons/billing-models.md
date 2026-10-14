@@ -68,4 +68,4 @@ CPU is billed on cumulative CPU time measured by the kernel (`cpu.stat`), and me
 | Long-lived environments idle most of the day | Usage-billed, or anything with automatic pause |
 | Thousands of concurrent sandboxes | Whatever has no plan fee for concurrency |
 
-Run your own numbers: `python3 scripts/estimate.py --help`.
+Run your own numbers in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run) or with `python3 scripts/estimate.py --help`.

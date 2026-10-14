@@ -10,7 +10,7 @@ Billing models (see comparisons/billing-models.md):
 Providers that only sell fixed sizes list them under compute.fixed_sizes; the
 cheapest size that fits the requested vCPU and memory is billed.
 
-All costs are compute-only list prices. Plan fees are reported separately by
+All costs are list prices for compute plus disk billed while running. Plan fees are reported separately by
 pick_tier(); free credits, egress and persistent storage are excluded.
 """
 

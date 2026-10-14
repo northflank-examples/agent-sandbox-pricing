@@ -68,7 +68,7 @@ For each scenario, the "cheapest plan that fits" is the lowest-fee published pla
 
 - Free credits and included allowances (e.g. Cloudflare's 375 vCPU-minutes/month)
 - Plan fees, which are shown separately
-- Persistent storage, snapshots and egress, which are listed in [hidden costs](comparisons/hidden-costs.md)
+- Persistent storage that outlives the sandbox, snapshots and egress (disk billed while the sandbox runs *is* included), which are listed in [hidden costs](comparisons/hidden-costs.md)
 - Charges outside the sandbox (Cloudflare Workers / Durable Objects, build minutes)
 - Taxes
 

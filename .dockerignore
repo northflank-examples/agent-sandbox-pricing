@@ -1,0 +1,4 @@
+*
+!web/
+!data/pricing.json
+web/parity.mjs
