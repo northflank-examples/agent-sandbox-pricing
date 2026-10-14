@@ -28,6 +28,9 @@ How the prices in this repository are collected, normalised and calculated, so y
 | Minimum billing increments (Vercel memory: 1 min) | Runtime is rounded up to the minimum. |
 | Per-sandbox fees (Vercel creations) | Added per sandbox. |
 | Included disk (Daytona first 5 GiB) | Subtracted before disk is charged. |
+| Maximum sandbox size (Cloudflare 4 vCPU / 12 GiB / 20 GB, Runloop 16 / 64 / 64, Vercel 32 / 64 / 64, Sprites 8 vCPU / 100 GB, Modal 3 TiB disk) | Above a hard maximum the provider shows **n/a**: there is no size to buy. |
+| Default per-sandbox limit (Daytona 4 vCPU / 8 GiB / 10 GB) | The price is still shown, with a ⚠ in the plan column, because the limit is an organisation default rather than a hard ceiling. |
+| Per-plan size caps (Vercel Hobby 4 vCPU / 8 GB, Pro 8 / 16; E2B Hobby 8 vCPU / 8 GiB / 10 GiB disk) | The cheapest plan that fits must also allow the sandbox size. |
 
 ## Cost formula
 

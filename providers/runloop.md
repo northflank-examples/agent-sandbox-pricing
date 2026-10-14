@@ -3,6 +3,8 @@
 Runloop provides microVM "Devboxes" aimed at AI coding agents and benchmarks. Compute, memory and disk are all metered per second on allocated resources.
 
 <!-- BEGIN GENERATED: provider:runloop -->
+> **⚠ Shutting down:** "Runloop is winding down its services. Support for existing customers continues through November 13, 2026 at 11:59 PM PT." ([source](https://docs.runloop.ai/docs/devboxes/configuration/sizes))
+
 Last verified: **2026-10-14** · Official pricing: <https://runloop.ai/pricing>
 
 ## At a glance

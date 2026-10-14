@@ -26,7 +26,7 @@ Compute plus disk while running, at list price. Excludes free credits, plan fees
 | [Daytona](../providers/daytona.md) | 1 vCPU / 2 GiB | $0.0828 | $6.90 | Tier 2 ($25 top-up) (no plan fee) |
 | [Vercel Sandbox](../providers/vercel.md) | 1 vCPU / 2 GiB | $0.1064 | $8.87 | Pro ($20/mo) |
 | [Modal](../providers/modal.md) | 1 vCPU / 2 GiB | $0.1190 | $9.92 | Starter (no plan fee) |
-| [Runloop](../providers/runloop.md) | 1 vCPU / 2 GiB | $0.1601 | $13.34 | Basic (no plan fee) ⚠ limits not published |
+| [Runloop](../providers/runloop.md) (shutting down) | 1 vCPU / 2 GiB | $0.1601 | $13.34 | Basic (no plan fee) ⚠ limits not published |
 <!-- END GENERATED: scenario:short-lived-agents -->
 
 ⚠ = a plan limit isn't published, or the workload exceeds the plan's session limit.

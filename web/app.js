@@ -96,6 +96,8 @@ function compute(providers, w) {
     .sort((a, b) => (a.total ?? Infinity) - (b.total ?? Infinity));
 }
 
+const displayName = (p) => (p.status_notice ? `${p.name} (${p.status_notice.label})` : p.name);
+
 function renderSummary(rows) {
   const priced = rows.filter((r) => r.total != null);
   const el = $("#summary");
@@ -132,7 +134,7 @@ function renderBars(rows) {
       const pct = r.total == null ? 0 : Math.max(0.6, (r.total / max) * 100);
       const tip = r.total == null ? `${r.p.name}: no size fits` : `${r.p.name}: ${usd(r.total)} total, ${usd(r.hourly, 4)} per sandbox-hour`;
       return `<li class="bar-row${i === 0 && r.total != null ? " is-best" : ""}" title="${esc(tip)}">
-        <span class="bar-name">${esc(r.p.name)}</span>
+        <span class="bar-name">${esc(displayName(r.p))}</span>
         <span class="bar-track"><span class="bar" style="width:${pct}%"></span></span>
         <span class="bar-value">${r.total == null ? "n/a" : usd(r.total)}</span>
       </li>`;
@@ -146,7 +148,7 @@ function renderTable(rows) {
       const size = r.size ? `${num(r.size[0])} vCPU / ${num(r.size[1])} GiB` : "No size fits";
       const tier = r.tier.warning ? `${esc(r.tier.label)} <span class="warn" title="${esc(r.tier.warning)}">⚠ ${esc(r.tier.warning)}</span>` : esc(r.tier.label);
       return `<tr>
-        <th scope="row"><a href="${esc(r.p.pricing_url)}" target="_blank" rel="noopener">${esc(r.p.name)}</a></th>
+        <th scope="row"><a href="${esc(r.p.pricing_url)}" target="_blank" rel="noopener">${esc(r.p.name)}</a>${r.p.status_notice ? ` <span class="warn" title="${esc(r.p.status_notice.text)}">⚠ ${esc(r.p.status_notice.label)}</span>` : ""}</th>
         <td class="num mono">${r.hourly == null ? "n/a" : usd(r.hourly, 4)}</td>
         <td class="num mono strong">${usd(r.total)}</td>
         <td class="size">${r.oversized ? `<strong>${size}</strong>` : size}</td>

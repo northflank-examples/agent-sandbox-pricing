@@ -23,9 +23,9 @@ def workloads() -> list[Workload]:
     grid = itertools.product(
         [1, 100, 1000],            # count
         [0.5, 5, 60, 1440, 43800],  # minutes
-        [0.1, 0.5, 1, 2, 3, 8, 64],  # vcpu
-        [0.25, 2, 4, 6, 32, 512],   # memory_gib
-        [0, 10, 50],               # disk_gb
+        [0.1, 0.5, 1, 2, 3, 4, 8, 16, 64],  # vcpu
+        [0.25, 2, 4, 6, 12, 32, 512],  # memory_gib
+        [0, 10, 20, 50, 100],         # disk_gb
         [0.05, 0.25, 1.0],         # cpu_utilisation
         [None, 5, 150, 2000],      # concurrency
     )
