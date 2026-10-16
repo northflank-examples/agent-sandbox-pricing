@@ -150,7 +150,7 @@ It depends on how busy your sandboxes are. For sandboxes that do real work (CPU 
 
 ### How much does it cost to run 100 AI agents?
 
-Take 100 sandboxes running for one hour at 2 vCPU / 4 GiB with the CPU 25% busy. Compute alone costs:
+Take 100 sandboxes running for one hour at 2 vCPU / 4 GiB with the CPU 25% busy and a 10 GB disk. At list price (compute plus disk) it costs:
 
 <!-- BEGIN GENERATED: answer:100-sandboxes -->
 - Northflank: $6.67
@@ -163,7 +163,7 @@ Take 100 sandboxes running for one hour at 2 vCPU / 4 GiB with the CPU 25% busy.
 - Runloop: $32.02
 <!-- END GENERATED: answer:100-sandboxes -->
 
-On top of that, E2B requires its $150/mo Pro plan for 100 concurrent sandboxes. Details: [scenarios/100-sandboxes.md](scenarios/100-sandboxes.md).
+E2B and Daytona charge exactly the same for CPU and memory; the 5 cents is disk. Daytona doesn't charge for the first 5 GiB and charges $0.000108 per GiB-hour after that ([Daytona pricing](https://www.daytona.io/pricing)), so the other 5 GB × 100 sandbox-hours costs $0.05. E2B doesn't charge for disk; its pricing page lists storage as Free, 10 GiB on Hobby and 20 GiB on Pro ([E2B pricing](https://e2b.dev/pricing), Storage tab). On top of that, E2B requires its $150/mo Pro plan for 100 concurrent sandboxes. Details: [scenarios/100-sandboxes.md](scenarios/100-sandboxes.md).
 
 ### Do sandbox providers charge for idle time?
 
