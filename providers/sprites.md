@@ -3,7 +3,7 @@
 Sprites are persistent Fly.io microVMs (fixed 8 vCPU / 100 GB) that pause automatically when idle. CPU and memory are billed on actual consumption, not allocation, so costs depend heavily on how busy the sandbox is.
 
 <!-- BEGIN GENERATED: provider:sprites -->
-Last verified: **2026-10-14** · Official pricing: <https://fly.io/sprites>
+Last verified: **2026-10-16** · Official pricing: <https://fly.io/sprites>
 
 ## At a glance
 

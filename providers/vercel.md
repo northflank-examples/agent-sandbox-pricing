@@ -3,7 +3,7 @@
 Vercel Sandbox runs Firecracker microVMs on Vercel's infrastructure. CPU is billed only while active (I/O wait is free); provisioned memory is billed for the whole runtime. Each vCPU comes with 2 GB of memory.
 
 <!-- BEGIN GENERATED: provider:vercel -->
-Last verified: **2026-10-14** · Official pricing: <https://vercel.com/docs/vercel-sandbox/pricing>
+Last verified: **2026-10-16** · Official pricing: <https://vercel.com/docs/vercel-sandbox/pricing>
 
 ## At a glance
 

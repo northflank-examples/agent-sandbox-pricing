@@ -2,7 +2,7 @@
 
 An open, source-linked comparison of what it costs to run **AI agent sandboxes** (isolated environments where agents execute code), covering per-vCPU and per-GiB rates, billing models, idle charges, plan fees, and **total cost for realistic agent workloads**.
 
-- **Prices last verified:** 2026-10-14 (each provider page shows its own verification date)
+- **Prices last verified:** 2026-10-16 (each provider page shows its own verification date)
 - **Providers:** [Northflank](providers/northflank.md) · [E2B](providers/e2b.md) · [Daytona](providers/daytona.md) · [Modal](providers/modal.md) · [Vercel Sandbox](providers/vercel.md) · [Cloudflare Sandbox](providers/cloudflare.md) · [Runloop](providers/runloop.md) · [Sprites (Fly.io)](providers/sprites.md)
 - **Note:** Runloop is winding down; it supports existing customers until November 13, 2026 ([source](https://docs.runloop.ai/docs/devboxes/configuration/sizes)). It stays in the tables until then.
 - **Data:** every number comes from [`data/pricing.json`](data/pricing.json), and every table below is generated from it. Price your own workload in the [web estimator](https://p01--sandbox-pricing-estimator--wdgpv6bn4jz8.code.run) or the [CLI](#estimate-your-own-workload).

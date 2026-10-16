@@ -3,7 +3,7 @@
 Modal Sandboxes run arbitrary code in gVisor-isolated containers on Modal's serverless platform. Sandboxes are billed per second on max(request, actual usage), at a separate, higher rate than Modal Functions; Modal quotes CPU per physical core (= 2 vCPU), normalised to per-vCPU here.
 
 <!-- BEGIN GENERATED: provider:modal -->
-Last verified: **2026-10-14** · Official pricing: <https://modal.com/pricing>
+Last verified: **2026-10-16** · Official pricing: <https://modal.com/pricing>
 
 ## At a glance
 

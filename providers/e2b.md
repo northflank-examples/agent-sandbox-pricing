@@ -3,7 +3,7 @@
 E2B provides Firecracker microVM sandboxes for AI agents with an open-source runtime. Compute is billed per second on allocated vCPU and memory; a monthly plan fee sets session length and concurrency limits.
 
 <!-- BEGIN GENERATED: provider:e2b -->
-Last verified: **2026-10-14** · Official pricing: <https://e2b.dev/pricing>
+Last verified: **2026-10-16** · Official pricing: <https://e2b.dev/pricing>
 
 ## At a glance
 
