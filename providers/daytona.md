@@ -3,7 +3,7 @@
 Daytona provides container (default) and VM sandboxes for AI agents. Compute is billed per second on reserved vCPU, memory and disk, with no plan fee; usage limits rise with account top-ups.
 
 <!-- BEGIN GENERATED: provider:daytona -->
-Last verified: **2026-10-14** · Official pricing: <https://www.daytona.io/pricing>
+Last verified: **2026-10-16** · Official pricing: <https://www.daytona.io/pricing>
 
 ## At a glance
 

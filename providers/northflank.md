@@ -5,7 +5,7 @@ Northflank runs sandboxes in microVMs (Kata Containers) for CPU workloads and un
 > Disclosure: this repository is maintained by Northflank. Northflank's data follows the same methodology as every other provider here.
 
 <!-- BEGIN GENERATED: provider:northflank -->
-Last verified: **2026-10-14** · Official pricing: <https://northflank.com/pricing>
+Last verified: **2026-10-16** · Official pricing: <https://northflank.com/pricing>
 
 ## At a glance
 

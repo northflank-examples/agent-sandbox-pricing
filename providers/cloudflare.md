@@ -3,7 +3,7 @@
 The Cloudflare Sandbox SDK runs on Cloudflare Containers (Firecracker microVMs). CPU is billed on active usage, memory and disk on provisioned size, in 10 ms increments. Requires the Workers Paid plan; Durable Objects and Workers charges apply on top.
 
 <!-- BEGIN GENERATED: provider:cloudflare -->
-Last verified: **2026-10-14** · Official pricing: <https://developers.cloudflare.com/containers/pricing/>
+Last verified: **2026-10-16** · Official pricing: <https://developers.cloudflare.com/containers/pricing/>
 
 ## At a glance
 
